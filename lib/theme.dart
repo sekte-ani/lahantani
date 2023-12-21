@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+Color greenColor = const Color(0xff63BE41);
+// Color green2Color = const Color(0xff459D25);
+Color green2Color = const Color(0xff79AC78);
+Color subtleGreenColor = const Color(0xff82CB67);
+Color darkGreenColor = const Color(0xff031F10);
+Color redColor = const Color(0xffFB4141);
+Color yellowColor = const Color(0xffD2CD56);
+Color yellow2Color = const Color(0xffF4EE67);
+
 Color blackColor = const Color(0xff404040);
 Color black2Color = const Color(0xff4D4D4D);
 Color greyColor = const Color(0xffC7C9D9);
@@ -22,27 +31,27 @@ BoxShadow themeShadow = BoxShadow(
   spreadRadius: 0,
 );
 
-TextStyle font_light = GoogleFonts.poppins(
+TextStyle font_light = GoogleFonts.montserrat(
   fontWeight: light,
   color: blackColor,
 );
-TextStyle font_regular = GoogleFonts.poppins(
+TextStyle font_regular = GoogleFonts.montserrat(
   fontWeight: regular,
   color: blackColor,
 );
-TextStyle font_medium = GoogleFonts.poppins(
+TextStyle font_medium = GoogleFonts.montserrat(
   fontWeight: medium,
   color: blackColor,
 );
-TextStyle font_semiBold = GoogleFonts.poppins(
+TextStyle font_semiBold = GoogleFonts.montserrat(
   fontWeight: semiBold,
   color: blackColor,
 );
-TextStyle font_bold = GoogleFonts.poppins(
+TextStyle font_bold = GoogleFonts.montserrat(
   fontWeight: bold,
   color: blackColor,
 );
-TextStyle font_extraBold = GoogleFonts.poppins(
+TextStyle font_extraBold = GoogleFonts.montserrat(
   fontWeight: extraBold,
   color: blackColor,
 );

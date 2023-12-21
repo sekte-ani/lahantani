@@ -1,19 +1,19 @@
-import 'package:lahantani/controller/login_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:lahantani/controller/register_controller.dart';
 import 'package:lahantani/ui/widgets/buttons.dart';
 import 'package:lahantani/ui/widgets/forms.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lahantani/theme.dart';
 import 'package:flutter/services.dart';
 
-class LoginPage extends GetView<LoginController> {
-  final LoginController controller = Get.find<LoginController>();
+class RegisterPage extends GetView<RegisterController> {
+  final RegisterController controller = Get.find<RegisterController>();
 
   // TextEditingController properties
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     var mediaSize = MediaQuery.of(context).size;
@@ -89,7 +89,7 @@ class LoginPage extends GetView<LoginController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Hola!",
+            "Holaasa!",
             style: GoogleFonts.montserrat(
               color: green2Color, // Ensure green2Color is defined
               fontSize: 32,
