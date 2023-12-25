@@ -31,7 +31,7 @@ class LoginController extends GetxController {
         backgroundColor: greenColor,
       );
 
-      Get.offAll(() => DashboardPage());
+      Get.offAll(() => HomePage());
       return;
     }
     Get.snackbar(
