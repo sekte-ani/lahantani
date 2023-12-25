@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lahantani/ui/pages/login_page.dart';
 
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({Key? key});
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DashboardScreen(),
+      home: HomeScreen(),
     );
   }
 }
 
-class DashboardScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   final String username = "John Doe"; // Ganti dengan username yang sesuai
   final String userRole = "Collage Student";
   final List<String> bookTitles = [
