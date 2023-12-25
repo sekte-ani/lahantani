@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lahantani/ui/pages/login_page.dart';
+import 'package:lahantani/ui/pages/forum/forum_page.dart';
+import 'package:lahantani/ui/pages/profile/profile_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key});
@@ -24,15 +26,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
     setState(() {
       _selectedIndex = index;
     });
-    // Handle navigation or actions based on the selected index
-    // For example:
-    // if (_selectedIndex == 0) {
-    //   // Navigate to Modul page
-    // } else if (_selectedIndex == 1) {
-    //   // Navigate to Forum page
-    // } else if (_selectedIndex == 2) {
-    //   // Navigate to Profile page
-    // }
+
+    switch (_selectedIndex) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DashboardPage()),
+        );
+        break;
+
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ForumPage()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProfilePage()),
+        );
+        break;
+
+      default:
+        break;
+    }
   }
 
   final String username = "John Doe"; // Ganti dengan username yang sesuai
