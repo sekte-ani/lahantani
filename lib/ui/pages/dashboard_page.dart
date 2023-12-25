@@ -12,7 +12,29 @@ class DashboardPage extends StatelessWidget {
   }
 }
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    // Handle navigation or actions based on the selected index
+    // For example:
+    // if (_selectedIndex == 0) {
+    //   // Navigate to Modul page
+    // } else if (_selectedIndex == 1) {
+    //   // Navigate to Forum page
+    // } else if (_selectedIndex == 2) {
+    //   // Navigate to Profile page
+    // }
+  }
+
   final String username = "John Doe"; // Ganti dengan username yang sesuai
   final String userRole = "Collage Student";
   final List<String> bookTitles = [
@@ -307,6 +329,25 @@ class DashboardScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Modul',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.forum),
+            label: 'Forum',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.green[200],
+        onTap: _onItemTapped,
       ),
     );
   }
