@@ -2,74 +2,86 @@ import 'package:flutter/material.dart';
 import 'package:lahantani/ui/pages/dashboard_page.dart';
 import 'package:lahantani/ui/pages/profile/profile_page.dart';
 
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ForumPage(),
+    );
+  }
+}
+
 class ForumPage extends StatefulWidget {
   @override
   _ForumPageState createState() => _ForumPageState();
 }
 
 class _ForumPageState extends State<ForumPage> {
-  int _selectedIndex = 1; // Misalnya, Forum diindeks ke-1
-  final TextEditingController _textEditingController = TextEditingController();
-  String _title = '';
-
+  int _selectedIndex = 1;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-    });
-
-    switch (_selectedIndex) {
-      case 0:
+      // Tambah logika untuk navigasi ke halaman terkait di sini
+      if (_selectedIndex == 0) {
+        // Navigasi ke halaman Dashboard
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => DashboardPage()),
         );
-        break;
-
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ForumPage()),
-        );
-        break;
-      case 2:
+      } else if (_selectedIndex == 2) {
+        // Navigasi ke halaman Profile
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ProfilePage()),
         );
-        break;
-
-      default:
-        break;
-    }
+      }
+      // Jika ingin menambahkan logika navigasi untuk item ke-1 (Forum), tambahkan di sini
+    });
   }
 
-  void _submitPost() {
-    // Handle submit post logic here
-    String postContent = _textEditingController.text;
-    // Perform actions with post content (e.g., save to database, submit API request, etc.)
-    // Reset the text field
-    _textEditingController.clear();
+  String selectedCategory = 'Pilih Perihal';
+  TextEditingController questionController = TextEditingController();
+  bool submitted = false;
+
+  @override
+  void dispose() {
+    questionController.dispose();
+    super.dispose();
+  }
+
+  void submitQuestion() {
+    // Di sini Anda dapat menambahkan logika untuk mengirim pertanyaan atau pesan
+    setState(() {
+      submitted = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
+        preferredSize: Size.fromHeight(60.0),
         child: AppBar(
           backgroundColor: Colors.green,
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false, // Hapus tombol back
           title: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.forum, color: Colors.white),
-                SizedBox(width: 8.0),
+                Icon(
+                  Icons.forum,
+                  color: Colors.white, // Ganti warna ikon menjadi putih
+                ), // Icon forum
+                SizedBox(width: 8),
                 Text(
                   'Forum',
                   style: TextStyle(
-                    fontSize: 24.0,
                     color: Colors.white,
+                    fontSize: 20.0,
                   ),
                 ),
               ],
@@ -78,51 +90,83 @@ class _ForumPageState extends State<ForumPage> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 20.0), // Set top padding here
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Judul',
-                    labelStyle: TextStyle(
-                      color: Colors.grey[700],
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.green[200]!,
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                  onChanged: (value) {
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: selectedCategory,
+                  isExpanded: true,
+                  onChanged: (newValue) {
                     setState(() {
-                      _title = value;
+                      selectedCategory = newValue!;
                     });
                   },
+                  items: <String>[
+                    'Pilih Perihal',
+                    'Pertanyaan',
+                    'Saran',
+                    'Lainnya',
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                    );
+                  }).toList(),
                 ),
-                SizedBox(height: 16.0),
-                Expanded(
-                  child: TextField(
-                    controller: _textEditingController,
-                    maxLines: null,
-                    decoration: InputDecoration(
-                      hintText: 'Isi Thread',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: _submitPost,
-                  child: Text('Submit'),
-                ),
-              ],
+              ),
             ),
-          ),
+            SizedBox(height: 20),
+            TextField(
+              controller: questionController,
+              maxLines: 8,
+              decoration: InputDecoration(
+                hintText: 'Tulis pertanyaan atau pesan Anda di sini',
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                submitQuestion();
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green, // Ganti warna tombol menjadi hijau
+              ),
+              child: Text(
+                'Kirim',
+                style: TextStyle(
+                  color: Colors.white, // Ganti warna teks menjadi putih
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            submitted
+                ? Text(
+                    'Forum telah dikirim, silahkan cek email',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : Container(),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -145,11 +189,5 @@ class _ForumPageState extends State<ForumPage> {
         onTap: _onItemTapped,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
   }
 }
