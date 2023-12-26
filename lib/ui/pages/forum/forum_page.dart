@@ -9,6 +9,8 @@ class ForumPage extends StatefulWidget {
 
 class _ForumPageState extends State<ForumPage> {
   int _selectedIndex = 1; // Misalnya, Forum diindeks ke-1
+  final TextEditingController _textEditingController = TextEditingController();
+  String _title = '';
 
   void _onItemTapped(int index) {
     setState(() {
@@ -41,14 +43,87 @@ class _ForumPageState extends State<ForumPage> {
     }
   }
 
+  void _submitPost() {
+    // Handle submit post logic here
+    String postContent = _textEditingController.text;
+    // Perform actions with post content (e.g., save to database, submit API request, etc.)
+    // Reset the text field
+    _textEditingController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Forum'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100.0),
+        child: AppBar(
+          backgroundColor: Colors.green,
+          automaticallyImplyLeading: false,
+          title: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.forum, color: Colors.white),
+                SizedBox(width: 8.0),
+                Text(
+                  'Forum',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-      body: Center(
-        child: Text('Isi dari Halaman Forum'),
+      body: Padding(
+        padding: EdgeInsets.only(top: 20.0), // Set top padding here
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Judul',
+                    labelStyle: TextStyle(
+                      color: Colors.grey[700],
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.green[200]!,
+                        width: 2.0,
+                      ),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      _title = value;
+                    });
+                  },
+                ),
+                SizedBox(height: 16.0),
+                Expanded(
+                  child: TextField(
+                    controller: _textEditingController,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      hintText: 'Isi Thread',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: _submitPost,
+                  child: Text('Submit'),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -70,5 +145,11 @@ class _ForumPageState extends State<ForumPage> {
         onTap: _onItemTapped,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 }
