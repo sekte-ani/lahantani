@@ -1,5 +1,5 @@
 import 'package:lahantani/theme.dart';
-import 'package:lahantani/ui/pages/home_page.dart';
+import 'package:lahantani/ui/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +31,7 @@ class LoginController extends GetxController {
         backgroundColor: greenColor,
       );
 
-      Get.offAll(() => HomePage());
+      Get.offAll(() => DashboardPage());
       return;
     }
     Get.snackbar(

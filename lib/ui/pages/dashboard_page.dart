@@ -1,18 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:lahantani/ui/pages/login_page.dart';
+import 'package:lahantani/ui/pages/forum/forum_page.dart';
+import 'package:lahantani/ui/pages/profile/profile_page.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key});
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
+      home: DashboardScreen(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (_selectedIndex) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DashboardPage()),
+        );
+        break;
+
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ForumPage()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProfilePage()),
+        );
+        break;
+
+      default:
+        break;
+    }
+  }
+
   final String username = "John Doe"; // Ganti dengan username yang sesuai
   final String userRole = "Collage Student";
   final List<String> bookTitles = [
@@ -307,6 +347,25 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Modul',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.forum),
+            label: 'Forum',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.green[200],
+        onTap: _onItemTapped,
       ),
     );
   }
