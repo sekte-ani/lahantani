@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lahantani/controller/register_controller.dart';
+import 'package:lahantani/ui/pages/login_page.dart';
 import 'package:lahantani/ui/widgets/buttons.dart';
 import 'package:lahantani/ui/widgets/forms.dart';
-// import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lahantani/theme.dart';
@@ -12,30 +12,29 @@ class RegisterPage extends GetView<RegisterController> {
   final RegisterController controller = Get.find<RegisterController>();
 
   // TextEditingController properties
+  TextEditingController namaController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var mediaSize = MediaQuery.of(context).size;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: green2Color, // Ensure green2Color is defined
-        image: DecorationImage(
-          image: const AssetImage("assets/bg3.jpg"),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            green2Color.withOpacity(0.2),
-            BlendMode.dstATop,
-          ),
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
+    return Scaffold(
+      backgroundColor: green2Color,
+      body: SafeArea(
+        bottom: false,
+        child: Stack(
           children: [
-            Positioned(top: 80, child: _buildTop(mediaSize)),
-            Positioned(bottom: 0, child: _buildBottom(mediaSize)),
+            _buildTop(mediaSize),
+            ListView(
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                _buildBottom(mediaSize),
+              ],
+            ),
           ],
         ),
       ),
@@ -50,15 +49,6 @@ class RegisterPage extends GetView<RegisterController> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(Icons.assignment_ind_outlined, size: 100, color: Colors.white),
-          Text(
-            "My Pertanian",
-            style: GoogleFonts.montserrat(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 40,
-              letterSpacing: 2,
-            ),
-          ),
         ],
       ),
     );
@@ -89,22 +79,43 @@ class RegisterPage extends GetView<RegisterController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Holaasa!",
+            "Registrasi Akun",
             style: GoogleFonts.montserrat(
-              color: green2Color, // Ensure green2Color is defined
+              color: green2Color,
               fontSize: 32,
               fontWeight: FontWeight.w500,
             ),
           ),
-          Text("Please login with your information"),
-          const SizedBox(height: 60),
+          Text("Isi berdasarkan data yang valid"),
+          const SizedBox(height: 40),
           InputField(
+            title: "Nama",
+            hintText: "Masukkan nama anda...",
+            controller: namaController,
+          ),
+          const SizedBox(height: 20),
+          InputFieldEmail(
             title: "Email",
             hintText: "Masukkan email anda..",
             controller: emailController,
             validator: (email) => controller.validateEmail(email),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
+          InputField(
+            title: "Nomor HP",
+            hintText: "Masukkan nomor telpon anda...",
+          ),
+          const SizedBox(height: 20),
+          InputFieldDate(
+            title: "Tanggal Lahir",
+            hintText: "Masukkan tanggal lahir...",
+          ),
+          const SizedBox(height: 20),
+          InputFieldBox(
+            title: "Alamat",
+            hintText: "Masukkan alamat rumah anda...",
+          ),
+          const SizedBox(height: 20),
           InputFieldPassword(
             title: "Password",
             hintText: "Masukkan password anda..",
@@ -113,7 +124,7 @@ class RegisterPage extends GetView<RegisterController> {
           ),
           const SizedBox(height: 40),
           PrimaryButton(
-            title: "Login",
+            title: "Register",
             onPressed: () {
               debugPrint("Email : ${emailController.text}");
               debugPrint("Password : ${passwordController.text}");
@@ -122,31 +133,31 @@ class RegisterPage extends GetView<RegisterController> {
           ),
           const SizedBox(height: 20),
           Center(
-              child: GestureDetector(
-            onTap: () {
-              
-            },
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Don't have an account? ",
-                    style: TextStyle(
-                      color: Colors.black, // Change color as needed
+            child: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Sudah punya akun? ",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: "Register",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
+                    TextSpan(
+                      text: "Login",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  ),
-                  // You can add more TextSpan for additional text if needed
-                ],
+                  ],
+                ),
               ),
             ),
-          )),
+          ),
           const SizedBox(height: 60),
         ],
       ),
