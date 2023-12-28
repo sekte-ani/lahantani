@@ -124,7 +124,7 @@ class RegisterPage extends GetView<RegisterController> {
           Center(
               child: GestureDetector(
             onTap: () {
-              Get.toNamed('/register');
+              
             },
             child: RichText(
               text: TextSpan(

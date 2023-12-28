@@ -1,4 +1,5 @@
 import 'package:lahantani/controller/login_controller.dart';
+import 'package:lahantani/ui/pages/register_page.dart';
 import 'package:lahantani/ui/widgets/buttons.dart';
 import 'package:lahantani/ui/widgets/forms.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +22,14 @@ class LoginPage extends GetView<LoginController> {
     return Container(
       decoration: BoxDecoration(
         color: green2Color, // Ensure green2Color is defined
-        image: DecorationImage(
-          image: const AssetImage("assets/bg3.jpg"),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            green2Color.withOpacity(0.2),
-            BlendMode.dstATop,
-          ),
-        ),
+        // image: DecorationImage(
+        //   image: const AssetImage("assets/bg3.jpg"),
+        //   fit: BoxFit.cover,
+        //   colorFilter: ColorFilter.mode(
+        //     green2Color.withOpacity(0.2),
+        //     BlendMode.dstATop,
+        //   ),
+        // ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -51,7 +52,7 @@ class LoginPage extends GetView<LoginController> {
         children: [
           Icon(Icons.assignment_ind_outlined, size: 100, color: Colors.white),
           Text(
-            "My Pertanian",
+            "LahanTani",
             style: GoogleFonts.montserrat(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class LoginPage extends GetView<LoginController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Hola!",
+            "Hello!",
             style: GoogleFonts.montserrat(
               color: green2Color, // Ensure green2Color is defined
               fontSize: 32,
@@ -97,7 +98,7 @@ class LoginPage extends GetView<LoginController> {
             ),
           ),
           Text("Please login with your information"),
-          const SizedBox(height: 60),
+          const SizedBox(height: 40),
           InputField(
             title: "Email",
             hintText: "Masukkan email anda..",
@@ -122,31 +123,32 @@ class LoginPage extends GetView<LoginController> {
           ),
           const SizedBox(height: 20),
           Center(
-              child: GestureDetector(
-            onTap: () {
-              Get.toNamed('/register');
-            },
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Don't have an account? ",
-                    style: TextStyle(
-                      color: Colors.black, // Change color as needed
+            child: GestureDetector(
+              onTap: () {
+                Get.to(RegisterPage());
+              },
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Don't have an account? ",
+                      style: TextStyle(
+                        color: Colors.black, // Change color as needed
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: "Register",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
+                    TextSpan(
+                      text: "Register",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  ),
-                  // You can add more TextSpan for additional text if needed
-                ],
+                    // You can add more TextSpan for additional text if needed
+                  ],
+                ),
               ),
             ),
-          )),
+          ),
           const SizedBox(height: 60),
         ],
       ),

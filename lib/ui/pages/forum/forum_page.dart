@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lahantani/ui/pages/dashboard_page.dart';
+import 'package:lahantani/ui/pages/home_page.dart';
 import 'package:lahantani/ui/pages/profile/profile_page.dart';
 
 void main() {

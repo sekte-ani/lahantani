@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lahantani/ui/pages/dashboard_page.dart';
+import 'package:lahantani/ui/pages/home_page.dart';
 import 'package:lahantani/ui/pages/forum/forum_page.dart';
 
 class ProfilePage extends StatefulWidget {

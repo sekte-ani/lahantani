@@ -1,10 +1,15 @@
+import 'package:lahantani/controller/dashboard_controller.dart';
 import 'package:lahantani/controller/login_controller.dart';
 
 import 'package:get/get.dart';
+import 'package:lahantani/controller/register_controller.dart';
 
 class DashboardBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<LoginController>(() => LoginController());
+    Get.lazyPut<RegisterController>(() => RegisterController());
+    Get.lazyPut<DashboardController>(() => DashboardController());
+
   }
 }

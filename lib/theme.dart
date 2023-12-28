@@ -31,27 +31,27 @@ BoxShadow themeShadow = BoxShadow(
   spreadRadius: 0,
 );
 
-TextStyle font_light = GoogleFonts.montserrat(
+TextStyle font_light = GoogleFonts.poppins(
   fontWeight: light,
   color: blackColor,
 );
-TextStyle font_regular = GoogleFonts.montserrat(
+TextStyle font_regular = GoogleFonts.poppins(
   fontWeight: regular,
   color: blackColor,
 );
-TextStyle font_medium = GoogleFonts.montserrat(
+TextStyle font_medium = GoogleFonts.poppins(
   fontWeight: medium,
   color: blackColor,
 );
-TextStyle font_semiBold = GoogleFonts.montserrat(
+TextStyle font_semiBold = GoogleFonts.poppins(
   fontWeight: semiBold,
   color: blackColor,
 );
-TextStyle font_bold = GoogleFonts.montserrat(
+TextStyle font_bold = GoogleFonts.poppins(
   fontWeight: bold,
   color: blackColor,
 );
-TextStyle font_extraBold = GoogleFonts.montserrat(
+TextStyle font_extraBold = GoogleFonts.poppins(
   fontWeight: extraBold,
   color: blackColor,
 );
