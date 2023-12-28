@@ -6,7 +6,7 @@ import 'package:lahantani/ui/pages/forum/forum_page.dart';
 import 'package:lahantani/ui/pages/modul/modul_page.dart';
 import 'package:lahantani/ui/pages/profile/profile_page.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends GetView<DashboardController> {
   final DashboardController controller = Get.put(DashboardController());
 
   @override
@@ -58,13 +58,13 @@ class DashboardPage extends StatelessWidget {
                       bottom: 3,
                     ),
                     child: Icon(
-                      Icons.calendar_month,
+                      Icons.book,
                       size: 20,
                       color:
                           controller.tabIndex == 0 ? greenColor : darkGreyColor,
                     ),
                   ),
-                  label: 'Absensi',
+                  label: 'Modul',
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
@@ -72,13 +72,13 @@ class DashboardPage extends StatelessWidget {
                       bottom: 3,
                     ),
                     child: Icon(
-                      Icons.description,
+                      Icons.forum,
                       size: 20,
                       color:
                           controller.tabIndex == 1 ? greenColor : darkGreyColor,
                     ),
                   ),
-                  label: 'Riwayat',
+                  label: 'Forum',
                 ),
                 BottomNavigationBarItem(
                   icon: Container(

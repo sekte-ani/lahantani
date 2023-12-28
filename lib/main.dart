@@ -1,5 +1,6 @@
 import 'package:lahantani/controller/bindings/dashboard_binding.dart';
 import 'package:lahantani/theme.dart';
+import 'package:lahantani/ui/pages/dashboard_page.dart';
 // import 'package:lahantani/ui/pages/dashboard_page.dart';
 // import 'package:lahantani/ui/pages/login_page.dart';
 // import 'package:lahantani/ui/pages/register_page.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SplashPage(),
+      home: DashboardPage(),
       initialBinding: DashboardBinding(),
     );
   }

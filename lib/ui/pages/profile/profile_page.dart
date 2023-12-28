@@ -1,42 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lahantani/ui/pages/dashboard_page.dart';
-import 'package:lahantani/ui/pages/home_page.dart';
-import 'package:lahantani/ui/pages/forum/forum_page.dart';
+import 'package:lahantani/theme.dart';
 
-class ProfilePage extends StatefulWidget {
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  int _selectedIndex = 2;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    switch (_selectedIndex) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => DashboardPage()),
-        );
-        break;
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ForumPage()),
-        );
-        break;
-      case 2:
-        // Do nothing as it's the current page
-        break;
-      default:
-        break;
-    }
-  }
-
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,18 +12,17 @@ class _ProfilePageState extends State<ProfilePage> {
           Stack(
             children: [
               Container(
-                color:
-                    Colors.green[200], // Background color for profile section
-                width: double
-                    .infinity, // Set width to fill the entire screen width
-                padding: EdgeInsets.all(200.0),
+                color: Colors.green,
+                width: double.infinity,
+                height: 200, // Set a fixed height
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      // Ganti gambar dengan foto profil pengguna
-                      backgroundImage: NetworkImage(
-                          'https://via.placeholder.com/150'), // URL foto profil
+                    Icon(
+                      Icons.account_circle,
+                      size: 70.0,
+                      color: whiteColor,
                     ),
                     SizedBox(height: 20),
                     Text(
@@ -81,8 +45,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
-                    // Fungsi yang akan dijalankan saat tombol Edit Profile ditekan
-                    // Tambahkan fungsi sesuai kebutuhan
+                    // Function to be executed when the Edit Profile button is pressed
+                    // Add the desired functionality here
                   },
                 ),
               ),
@@ -99,8 +63,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     icon: Icons.lock,
                     text: 'Password',
                     onPressed: () {
-                      // Fungsi untuk mengatur perubahan password
-                      // Tambahkan fungsi sesuai kebutuhan
+                      // Function to handle changing the password
+                      // Add the desired functionality here
                     },
                   ),
                   SizedBox(height: 10),
@@ -108,8 +72,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     icon: Icons.email,
                     text: 'Email Address',
                     onPressed: () {
-                      // Fungsi untuk mengatur perubahan alamat email
-                      // Tambahkan fungsi sesuai kebutuhan
+                      // Function to handle changing the email address
+                      // Add the desired functionality here
                     },
                   ),
                   SizedBox(height: 10),
@@ -117,8 +81,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     icon: Icons.help,
                     text: 'Help Desk',
                     onPressed: () {
-                      // Fungsi untuk membuka help desk
-                      // Tambahkan fungsi sesuai kebutuhan
+                      // Function to open the help desk
+                      // Add the desired functionality here
                     },
                   ),
                   SizedBox(height: 10),
@@ -126,8 +90,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     icon: Icons.logout,
                     text: 'Sign Out',
                     onPressed: () {
-                      // Fungsi untuk logout
-                      // Tambahkan fungsi sesuai kebutuhan
+                      // Function to handle logout
+                      // Add the desired functionality here
                     },
                   ),
                 ],
@@ -135,25 +99,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: 'Modul',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.forum),
-            label: 'Forum',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green[200],
-        onTap: _onItemTapped,
       ),
     );
   }
@@ -163,30 +108,26 @@ class _ProfilePageState extends State<ProfilePage> {
       required String text,
       required VoidCallback onPressed}) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.lightGreen[100], // Background color for profile button
+          color: Colors.lightGreen[100],
           borderRadius: BorderRadius.circular(8.0),
         ),
-        padding: EdgeInsets.symmetric(
-            vertical: 20.0, horizontal: 16.0), // Add padding inside container
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
         child: TextButton(
           onPressed: onPressed,
           child: Row(
             children: [
-              Icon(icon, color: Colors.green), // Change icon color
+              Icon(icon, color: Colors.green),
               SizedBox(width: 10),
               Expanded(
                 child: Text(
                   text,
-                  style: TextStyle(
-                      fontSize: 18, color: Colors.black), // Change text color
+                  style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ),
-              Icon(Icons.arrow_forward_ios,
-                  color: Colors.green), // Change arrow icon color
+              Icon(Icons.arrow_forward_ios, color: Colors.green),
             ],
           ),
         ),

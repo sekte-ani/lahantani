@@ -128,7 +128,7 @@ class RegisterPage extends GetView<RegisterController> {
             onPressed: () {
               debugPrint("Email : ${emailController.text}");
               debugPrint("Password : ${passwordController.text}");
-              controller.onLogin();
+              controller.onRegister();
             },
           ),
           const SizedBox(height: 20),

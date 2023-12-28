@@ -21,7 +21,7 @@ class RegisterController extends GetxController {
     return null;
   }
 
-  Future onLogin() async {
+  Future onRegister() async {
     Get.focusScope!.unfocus();
     if (formKey.currentState!.validate()) {
       Get.snackbar(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Color greenColor = const Color(0xff63BE41);
+Color greenColor = Colors.green;
 // Color green2Color = const Color(0xff459D25);
 Color green2Color = const Color(0xff79AC78);
 Color subtleGreenColor = const Color(0xff82CB67);
