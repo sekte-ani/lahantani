@@ -5,6 +5,7 @@ import 'package:lahantani/controller/dashboard_controller.dart';
 import 'package:lahantani/controller/modul_controller.dart';
 import 'package:lahantani/controller/profile_controller.dart';
 import 'package:lahantani/theme.dart';
+import 'package:lahantani/ui/pages/modul/modul_detail_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ModulPage extends GetView<DashboardController> {
@@ -112,10 +113,11 @@ class ModulPage extends GetView<DashboardController> {
                         // String prefix = "${item["modul"]}";
                         // int startIndex = "post-file/".length;
                         // String urlModul = prefix.substring(startIndex);
-                        print(
-                            'https://tani.ferdirns.com/storage/${item["modul"]}');
-                        _launchURL(
-                            'https://tani.ferdirns.com/storage/${item["modul"]}');
+
+                        var modulUrl =
+                            'https://tani.ferdirns.com/storage/${item["modul"]}';
+                        Get.to(() => ModulDetailPage(pdfUrl: modulUrl));
+                        // _launchURL(modulUrl);
                       },
                       child: Card(
                         elevation: 3,
@@ -160,7 +162,7 @@ class ModulPage extends GetView<DashboardController> {
                                     ),
                                     SizedBox(height: 10),
                                     Text(
-                                      'Keterangan mengenai buku.',
+                                      'Klik untuk membuka modul...',
                                       style: TextStyle(fontSize: 14),
                                     ),
                                   ],

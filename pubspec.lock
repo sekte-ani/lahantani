@@ -97,6 +97,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  device_info_plus:
+    dependency: transitive
+    description:
+      name: device_info_plus
+      sha256: "0042cb3b2a76413ea5f8a2b40cec2a33e01d0c937e91f0f7c211fde4f7739ba6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.1.1"
+  device_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_plus_platform_interface
+      sha256: d3b01d5868b50ae571cd1dc6e502fc94d956b665756180f7b16ead09e836fd64
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   dio:
     dependency: "direct main"
     description:
@@ -121,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  file:
+    dependency: transitive
+    description:
+      name: file
+      sha256: "5fc22d7c25582e38ad9a8515372cd9a93834027aacf1801cf01164dac0ffa08c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -152,86 +176,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  geocoding:
-    dependency: "direct main"
-    description:
-      name: geocoding
-      sha256: e1dc0ac56666d9ed1d5a9ae5543ce9eb5986db6209cc7600103487d09192059c
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
-  geocoding_android:
-    dependency: transitive
-    description:
-      name: geocoding_android
-      sha256: "609db1d71bc364dd9d0616f72a41c01e0c74f3a3807efb85e0d5a67e57baf50f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.2"
-  geocoding_ios:
-    dependency: transitive
-    description:
-      name: geocoding_ios
-      sha256: "8f79e380abb640ef4d88baee8bb65390058c802601158d0813dc990b36b189d2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
-  geocoding_platform_interface:
-    dependency: transitive
-    description:
-      name: geocoding_platform_interface
-      sha256: "8848605d307d844d89937cdb4b8ad7dfa880552078f310fa24d8a460f6dddab4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
-  geolocator:
-    dependency: "direct main"
-    description:
-      name: geolocator
-      sha256: e946395fc608842bb2f6c914807e9183f86f3cb787f6b8f832753e5251036f02
-      url: "https://pub.dev"
-    source: hosted
-    version: "10.1.0"
-  geolocator_android:
-    dependency: transitive
-    description:
-      name: geolocator_android
-      sha256: "741579fa6c9e412984d2bdb2fbaa54e3c3f7587c60aeacfe6e058358a11f40f8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.4.0"
-  geolocator_apple:
-    dependency: transitive
-    description:
-      name: geolocator_apple
-      sha256: ab90ae811c42ec2f6021e01eca71df00dee6ff1e69d2c2dafd4daeb0b793f73d
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.2"
-  geolocator_platform_interface:
-    dependency: transitive
-    description:
-      name: geolocator_platform_interface
-      sha256: "6c8d494d6948757c56720b778af742f6973f31fca1f702a7539b8917e4a2468a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.0"
-  geolocator_web:
-    dependency: transitive
-    description:
-      name: geolocator_web
-      sha256: "59083f7e0871b78299918d92bf930a14377f711d2d1156c558cd5ebae6c20d58"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
-  geolocator_windows:
-    dependency: transitive
-    description:
-      name: geolocator_windows
-      sha256: a92fae29779d5c6dc60e8411302f5221ade464968fe80a36d330e80a71f087af
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.2"
   get:
     dependency: "direct main"
     description:
@@ -469,6 +413,70 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "1b40729aa10a727150a6cc56e532c770f4baded83846fca8700efd908d0f4d0a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
+  syncfusion_flutter_pdf:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_pdf
+      sha256: "30a638e125e2c206ee467604d5f7a53033a9ad5fd40264e67d74df83ffe6ec1f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
+  syncfusion_flutter_pdfviewer:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_pdfviewer
+      sha256: "8f6d07ae9f6158a54f458d44cbe68318519ff5d8df92e7a33ae0822781ff0842"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
+  syncfusion_flutter_signaturepad:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_signaturepad
+      sha256: "6c906f6d0fb7d7718b2e879bf57061d102877a6c53ae321fc3d9844d05f88d96"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
+  syncfusion_pdfviewer_macos:
+    dependency: transitive
+    description:
+      name: syncfusion_pdfviewer_macos
+      sha256: "05281399890b030786de401c096fe0ca477df7875ae037bf492477800bde4b44"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
+  syncfusion_pdfviewer_platform_interface:
+    dependency: transitive
+    description:
+      name: syncfusion_pdfviewer_platform_interface
+      sha256: "4a9dd64b68d5dd60188ad715a8b956823be268c4e83a26fdf4d8ce4c2bf6df5b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
+  syncfusion_pdfviewer_web:
+    dependency: transitive
+    description:
+      name: syncfusion_pdfviewer_web
+      sha256: "6482ddfff19b078f4f47fb5273cb0cef0aeb6ddecb9db1a4c7f2d0ad21f6ca1e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
+  syncfusion_pdfviewer_windows:
+    dependency: transitive
+    description:
+      name: syncfusion_pdfviewer_windows
+      sha256: cb950f748cabf4ca917011cf3d6f1f52b593472680b610e3559a74ab84cc2f07
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.1.43"
   term_glyph:
     dependency: transitive
     description:
@@ -589,6 +597,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
+  win32_registry:
+    dependency: transitive
+    description:
+      name: win32_registry
+      sha256: "41fd8a189940d8696b1b810efb9abcf60827b6cbfab90b0c43e8439e3a39d85a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   xdg_directories:
     dependency: transitive
     description:
