@@ -1,64 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:lahantani/ui/pages/dashboard_page.dart';
-import 'package:lahantani/ui/pages/home_page.dart';
-import 'package:lahantani/ui/pages/profile/profile_page.dart';
+import 'package:get/get.dart';
+import 'package:lahantani/controller/forum_controller.dart';
+import 'package:lahantani/ui/widgets/forms.dart';
+import 'package:lahantani/ui/widgets/validator.dart';
 
-void main() {
-  runApp(MyApp());
-}
+class ForumPage extends GetView<ForumController> {
+  final ForumController controller = Get.put(ForumController());
+  final TextEditingController questionController = TextEditingController();
+  final RxBool submitted = false.obs;
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ForumPage(),
-    );
-  }
-}
-
-class ForumPage extends StatefulWidget {
-  @override
-  _ForumPageState createState() => _ForumPageState();
-}
-
-class _ForumPageState extends State<ForumPage> {
-  int _selectedIndex = 1;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      // Tambah logika untuk navigasi ke halaman terkait di sini
-      if (_selectedIndex == 0) {
-        // Navigasi ke halaman Dashboard
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => DashboardPage()),
-        );
-      } else if (_selectedIndex == 2) {
-        // Navigasi ke halaman Profile
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ProfilePage()),
-        );
-      }
-      // Jika ingin menambahkan logika navigasi untuk item ke-1 (Forum), tambahkan di sini
-    });
-  }
-
-  String selectedCategory = 'Pilih Perihal';
-  TextEditingController questionController = TextEditingController();
-  bool submitted = false;
-
-  @override
-  void dispose() {
-    questionController.dispose();
-    super.dispose();
-  }
+  var selected = ''.obs;
 
   void submitQuestion() {
-    // Di sini Anda dapat menambahkan logika untuk mengirim pertanyaan atau pesan
-    setState(() {
-      submitted = true;
-    });
+    // Add logic to send the question or message
+    submitted.value = true;
   }
 
   @override
@@ -68,15 +23,15 @@ class _ForumPageState extends State<ForumPage> {
         preferredSize: Size.fromHeight(60.0),
         child: AppBar(
           backgroundColor: Colors.green,
-          automaticallyImplyLeading: false, // Hapus tombol back
+          automaticallyImplyLeading: false,
           title: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   Icons.forum,
-                  color: Colors.white, // Ganti warna ikon menjadi putih
-                ), // Icon forum
+                  color: Colors.white,
+                ),
                 SizedBox(width: 8),
                 Text(
                   'Forum',
@@ -90,84 +45,98 @@ class _ForumPageState extends State<ForumPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  value: selectedCategory,
-                  isExpanded: true,
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedCategory = newValue!;
-                    });
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Obx(() => DropdownButtonHideUnderline(
+                        child: DropdownButtonFormField<String>(
+                          validator: Validator.required,
+                          hint: Text("Pilih Perihal.."),
+                          value:
+                              selected.value.isNotEmpty ? selected.value : null,
+                          isExpanded: true,
+                          onChanged: (value) {
+                            // No need to setState as it's a stateless widget
+                            controller.subject = value!;
+                            selected.value = value!;
+                            print(value);
+                          },
+                          items: <String>[
+                            'Pertanyaan',
+                            'Saran',
+                            'Lainnya',
+                          ].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value
+                                  .toLowerCase(), // Ensure unique values (e.g., make them lowercase)
+                              child: Text(
+                                value,
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      )),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  validator: Validator.required,
+                  onChanged: (value) {
+                    controller.message = value;
                   },
-                  items: <String>[
-                    'Pilih Perihal',
-                    'Pertanyaan',
-                    'Saran',
-                    'Lainnya',
-                  ].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: questionController,
-              maxLines: 8,
-              decoration: InputDecoration(
-                hintText: 'Tulis pertanyaan atau pesan Anda di sini',
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue, width: 2.0),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                submitQuestion();
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green, // Ganti warna tombol menjadi hijau
-              ),
-              child: Text(
-                'Kirim',
-                style: TextStyle(
-                  color: Colors.white, // Ganti warna teks menjadi putih
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            submitted
-                ? Text(
-                    'Forum telah dikirim, silahkan cek email',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
+                  maxLines: 8,
+                  decoration: InputDecoration(
+                    hintText: 'Tulis pertanyaan atau pesan Anda di sini',
+                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2.0),
                     ),
-                  )
-                : Container(),
-          ],
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.doKirim();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                  ),
+                  child: Text(
+                    'Kirim',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Obx(
+                  () => submitted.value
+                      ? Text(
+                          'Forum telah dikirim, silahkan cek email',
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : Container(),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
