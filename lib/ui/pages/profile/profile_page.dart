@@ -46,17 +46,17 @@ class ProfilePage extends GetView<ProfileController> {
                   ),
                 ),
               ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: IconButton(
-                  icon: Icon(Icons.edit),
-                  onPressed: () {
-                    // Function to be executed when the Edit Profile button is pressed
-                    // Add the desired functionality here
-                  },
-                ),
-              ),
+              // Positioned(
+              //   top: 0,
+              //   right: 0,
+              //   child: IconButton(
+              //     icon: Icon(Icons.edit),
+              //     onPressed: () {
+              //       // Function to be executed when the Edit Profile button is pressed
+              //       // Add the desired functionality here
+              //     },
+              //   ),
+              // ),
             ],
           ),
           SizedBox(height: 30),
@@ -67,8 +67,8 @@ class ProfilePage extends GetView<ProfileController> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   _buildProfileButton(
-                    icon: Icons.lock,
-                    text: 'Password',
+                    icon: Icons.edit_document,
+                    text: 'Edit Profile',
                     onPressed: () {
                       // Function to handle changing the password
                       // Add the desired functionality here

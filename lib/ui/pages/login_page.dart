@@ -129,7 +129,7 @@ class LoginPage extends GetView<LoginController> {
           Center(
             child: GestureDetector(
               onTap: () {
-                Get.to(RegisterPage());
+                Get.off(() => RegisterPage());
               },
               child: RichText(
                 text: TextSpan(

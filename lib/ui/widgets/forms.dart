@@ -324,6 +324,7 @@ class InputFieldDate extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController? controller;
+  // final String? Function(String?)? validator;
   final DatePickerController dateController = Get.put(DatePickerController());
   final TextEditingController _dateController = TextEditingController();
 
@@ -337,6 +338,8 @@ class InputFieldDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _dateController = controller ??
+        TextEditingController(); // Use the provided controller or create a new one
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

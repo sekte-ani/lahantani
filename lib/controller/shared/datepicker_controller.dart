@@ -35,8 +35,8 @@ class DatePickerController extends GetxController {
     if (pickedDate != null) {
       selectedDate.value = pickedDate;
       // selectedTime.value = pickedTime;
-      String formattedDate =
-          DateFormat('dd/MM/yyyy').format(pickedDate).toString().split(" ")[0];
+      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      // DateFormat('yyyy-MM-dd').format(pickedDate).toString().split(" ")[0];
       // String formattedTime =
       // "${pickedTime.hour}:${pickedTime.minute.toString().padLeft(2, '0')}";
       // Update the controller text with the formatted date

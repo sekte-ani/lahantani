@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lahantani/controller/register_controller.dart';
+import 'package:lahantani/controller/shared/datepicker_controller.dart';
 import 'package:lahantani/ui/pages/login_page.dart';
 import 'package:lahantani/ui/widgets/buttons.dart';
+import 'package:lahantani/ui/widgets/datepicker.dart';
 import 'package:lahantani/ui/widgets/forms.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lahantani/theme.dart';
 import 'package:flutter/services.dart';
+import 'package:lahantani/ui/widgets/validator.dart';
 
 class RegisterPage extends GetView<RegisterController> {
-  final RegisterController controller = Get.find<RegisterController>();
-
+  // final RegisterController controller = Get.put(RegisterController());
   // TextEditingController properties
-  TextEditingController namaController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController bornController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -91,54 +97,77 @@ class RegisterPage extends GetView<RegisterController> {
           InputField(
             title: "Nama",
             hintText: "Masukkan nama anda...",
-            controller: namaController,
+            validator: Validator.required,
+            onChange: (value) {
+              controller.name = value;
+            },
           ),
           const SizedBox(height: 20),
           InputFieldEmail(
             title: "Email",
             hintText: "Masukkan email anda..",
-            controller: emailController,
-            validator: (email) => controller.validateEmail(email),
+            validator: Validator.required,
+            onChange: (value) {
+              controller.email = value;
+            },
           ),
           const SizedBox(height: 20),
-          InputField(
-            title: "Nomor HP",
-            hintText: "Masukkan nomor telpon anda...",
-          ),
-          const SizedBox(height: 20),
-          InputFieldDate(
-            title: "Tanggal Lahir",
-            hintText: "Masukkan tanggal lahir...",
-          ),
-          const SizedBox(height: 20),
-          InputFieldBox(
-            title: "Alamat",
-            hintText: "Masukkan alamat rumah anda...",
-          ),
+          // InputField(
+          //   title: "Nomor HP",
+          //   hintText: "Masukkan nomor telpon anda...",
+          //   controller: phoneController,
+          //   validator: Validator.number,
+          //   onChange: (value) {
+          //     controller.phone = value;
+          //   },
+          // ),
+          // const SizedBox(height: 20),
+          // InputFieldDate(
+          //   title: "Tanggal Lahir",
+          //   hintText: "Masukkan tanggal lahir...",
+          // ),
+          // QDatePicker(
+          //   label: "Tanggal Lahir",
+          //   validator: Validator.required,
+          //   onChanged: (value) {
+          //     controller.born = value;
+          //   },
+          // ),
+          // const SizedBox(height: 20),
+          // InputFieldBox(
+          //   title: "Alamat",
+          //   hintText: "Masukkan alamat rumah anda...",
+          //   validator: Validator.required,
+          //   onChange: (value) {
+          //     controller.address = value;
+          //   },
+          // ),
           const SizedBox(height: 20),
           InputFieldPassword(
             title: "Password",
             hintText: "Masukkan password anda..",
-            controller: passwordController,
-            validator: (password) => controller.validatePassword(password),
+            validator: Validator.required,
+            onChange: (value) {
+              controller.password = value;
+            },
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 50),
           PrimaryButton(
             title: "Register",
             onPressed: () {
-              debugPrint("Email : ${emailController.text}");
-              debugPrint("Password : ${passwordController.text}");
-              controller.onRegister();
+              debugPrint("Email : ${controller.email}");
+              debugPrint("nama : ${controller.name}");
+              controller.doRegister();
             },
           ),
           const SizedBox(height: 20),
           Center(
             child: GestureDetector(
               onTap: () {
-                Get.back();
+                Get.off(() => LoginPage());
               },
               child: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: "Sudah punya akun? ",
@@ -158,7 +187,7 @@ class RegisterPage extends GetView<RegisterController> {
               ),
             ),
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 90),
         ],
       ),
     );

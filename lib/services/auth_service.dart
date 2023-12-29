@@ -29,4 +29,38 @@ class AuthService {
       return false;
     }
   }
+
+  // register
+  register({
+    required String name,
+    required String email,
+    // required String phone,
+    // required DateTime born,
+    // required String address,
+    required String password,
+  }) async {
+    try {
+      var response = await Dio().post(
+        "https://tani.ferdirns.com/api/register",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+          },
+        ),
+        data: {
+          "name": name,
+          "email": email,
+          // "phone": phone,
+          // "born": born,
+          // "address": address,
+          "password": password,
+        },
+      );
+      Map obj = response.data;
+      return true;
+    } on Exception catch (err) {
+      print(err);
+      return false;
+    }
+  }
 }
