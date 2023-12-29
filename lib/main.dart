@@ -1,3 +1,4 @@
+import 'package:get_storage/get_storage.dart';
 import 'package:lahantani/controller/bindings/dashboard_binding.dart';
 import 'package:lahantani/theme.dart';
 import 'package:lahantani/ui/pages/dashboard_page.dart';
@@ -9,8 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await GetStorage.init();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: DashboardPage(),
+      home: SplashPage(),
       initialBinding: DashboardBinding(),
     );
   }

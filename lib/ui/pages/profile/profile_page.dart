@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lahantani/controller/profile_controller.dart';
 import 'package:lahantani/theme.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends GetView<ProfileController> {
+  ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +95,7 @@ class ProfilePage extends StatelessWidget {
                     onPressed: () {
                       // Function to handle logout
                       // Add the desired functionality here
+                      controller.onLogout();
                     },
                   ),
                 ],

@@ -9,7 +9,7 @@ import 'package:lahantani/theme.dart';
 import 'package:flutter/services.dart';
 
 class LoginPage extends GetView<LoginController> {
-  final LoginController controller = Get.find<LoginController>();
+  final LoginController controller = Get.put(LoginController());
 
   // TextEditingController properties
   TextEditingController emailController = TextEditingController();
@@ -102,23 +102,27 @@ class LoginPage extends GetView<LoginController> {
           InputField(
             title: "Email",
             hintText: "Masukkan email anda..",
-            controller: emailController,
+            onChange: (value) {
+              controller.email = value;
+            },
             validator: (email) => controller.validateEmail(email),
           ),
           const SizedBox(height: 30),
           InputFieldPassword(
             title: "Password",
             hintText: "Masukkan password anda..",
-            controller: passwordController,
+            onChange: (value) {
+              controller.password = value;
+            },
             validator: (password) => controller.validatePassword(password),
           ),
           const SizedBox(height: 40),
           PrimaryButton(
             title: "Login",
             onPressed: () {
-              debugPrint("Email : ${emailController.text}");
-              debugPrint("Password : ${passwordController.text}");
-              controller.onLogin();
+              debugPrint("Email : ${controller.email}");
+              debugPrint("Password : ${controller.password}");
+              controller.doLogin();
             },
           ),
           const SizedBox(height: 20),

@@ -4,7 +4,7 @@ import 'package:lahantani/ui/pages/dashboard_page.dart';
 import 'package:lahantani/ui/pages/login_page.dart';
 
 class SplashController extends GetxController {
-  final getStorage = GetStorage();
+  final box = GetStorage();
 
   @override
   void onInit() {
@@ -15,12 +15,12 @@ class SplashController extends GetxController {
   void onReady() {
     super.onReady();
 
-    String? savedToken = getStorage.read("token");
+    String? savedToken = box.read("token");
     print("Saved token from GetStorage: $savedToken");
 
     if (savedToken != null) {
       Future.delayed(
-        const Duration(milliseconds: 2000),
+        const Duration(seconds: 5),
         () {
           Get.offAll(DashboardPage());
         },

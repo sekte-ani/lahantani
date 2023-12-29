@@ -3,9 +3,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:lahantani/ui/pages/login_page.dart';
 
 class ProfileController extends GetxController {
-  final getStorage = GetStorage();
+  final box = GetStorage();
   onLogout() {
-    getStorage.erase();
+    box.erase();
     Get.offAll(LoginPage());
   }
 }
