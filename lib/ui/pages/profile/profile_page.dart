@@ -81,15 +81,6 @@ class ProfilePage extends GetView<ProfileController> {
                   ),
                   SizedBox(height: 10),
                   _buildProfileButton(
-                    icon: Icons.help,
-                    text: 'Help Desk',
-                    onPressed: () {
-                      // Function to open the help desk
-                      // Add the desired functionality here
-                    },
-                  ),
-                  SizedBox(height: 10),
-                  _buildProfileButton(
                     icon: Icons.logout,
                     text: 'Sign Out',
                     onPressed: () {

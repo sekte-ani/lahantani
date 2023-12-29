@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lahantani/controller/dashboard_controller.dart';
+import 'package:lahantani/controller/modul_controller.dart';
 import 'package:lahantani/theme.dart';
 import 'package:lahantani/ui/pages/forum/forum_page.dart';
 import 'package:lahantani/ui/pages/modul/modul_page.dart';
@@ -8,6 +9,7 @@ import 'package:lahantani/ui/pages/profile/profile_page.dart';
 
 class DashboardPage extends GetView<DashboardController> {
   final DashboardController controller = Get.put(DashboardController());
+  final ModulController modulController = Get.put(ModulController());
 
   @override
   Widget build(BuildContext context) {
