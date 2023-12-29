@@ -18,7 +18,6 @@ class ModulService {
         },
       ),
     );
-    print("Token print from modul serv: $token");
     String jsonString = jsonEncode(response.data);
     Map obj = jsonDecode(jsonString);
     List data = obj["data"];

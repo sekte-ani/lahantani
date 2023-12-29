@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lahantani/controller/dashboard_controller.dart';
 import 'package:lahantani/controller/modul_controller.dart';
+import 'package:lahantani/controller/profile_controller.dart';
 import 'package:lahantani/theme.dart';
 
 class ModulPage extends GetView<DashboardController> {
   ModulController modulController = Get.put(ModulController());
-
-  final String username = "John Doe";
+  ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,9 @@ class ModulPage extends GetView<DashboardController> {
         statusBarIconBrightness: Brightness.dark,
       ),
     );
+
+    var dataProfile = profileController.profile;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100),
@@ -39,13 +42,13 @@ class ModulPage extends GetView<DashboardController> {
                       color: whiteColor,
                     ),
                   ),
-                  Text(
-                    '$username',
-                    style: font_medium.copyWith(
-                      fontSize: 21,
-                      color: whiteColor,
-                    ),
-                  ),
+                  Obx(() => Text(
+                        '${dataProfile["name"]}',
+                        style: font_medium.copyWith(
+                          fontSize: 18,
+                          color: whiteColor,
+                        ),
+                      )),
                 ],
               ),
               GestureDetector(
@@ -80,10 +83,10 @@ class ModulPage extends GetView<DashboardController> {
             const SizedBox(
               height: 10,
             ),
-            Obx(() => Text(
-                  "List Modul ${modulController.moduls.length}",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                )),
+            Text(
+              "List Modul",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             SizedBox(height: 20),
             Expanded(
               child: Obx(

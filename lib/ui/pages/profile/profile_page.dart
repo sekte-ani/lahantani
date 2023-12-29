@@ -7,6 +7,8 @@ class ProfilePage extends GetView<ProfileController> {
   ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
+    var itemProfile = controller.profile;
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -18,28 +20,30 @@ class ProfilePage extends GetView<ProfileController> {
                 color: Colors.green,
                 width: double.infinity,
                 height: 200, // Set a fixed height
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.account_circle,
-                      size: 70.0,
-                      color: whiteColor,
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Nama Pengguna',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      'useremail@example.com',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                  ],
+                child: Obx(
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.account_circle,
+                        size: 70.0,
+                        color: whiteColor,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        '${itemProfile["name"]}',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      Text(
+                        '${itemProfile["email"]}',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Positioned(
