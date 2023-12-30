@@ -10,9 +10,11 @@ class ModulController extends GetxController {
   void onInit() {
     super.onInit();
     getModuls();
+    update();
   }
 
-  List<dynamic> moduls = [].obs;
+  RxList<dynamic> moduls = <dynamic>[].obs;
+
   Future<void> getModuls() async {
     try {
       moduls.assignAll(await ModulService().get());

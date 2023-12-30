@@ -7,6 +7,7 @@ import 'package:lahantani/controller/profile_controller.dart';
 import 'package:lahantani/theme.dart';
 import 'package:lahantani/ui/pages/modul/modul_detail_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:path/path.dart' as path;
 
 class ModulPage extends GetView<DashboardController> {
   ModulController modulController = Get.put(ModulController());
@@ -21,6 +22,10 @@ class ModulPage extends GetView<DashboardController> {
       throw "can not launch url";
     }
     ;
+  }
+
+  Future<void> _onRefresh() async {
+    await modulController.getModuls();
   }
 
   @override
@@ -102,79 +107,87 @@ class ModulPage extends GetView<DashboardController> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: Obx(
-                () => ListView.builder(
-                  itemCount: modulController.moduls.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    var item = modulController.moduls[index];
-                    return InkWell(
-                      onTap: () {
-                        print('Card Clicked: ${item["modul"]}');
-                        // String prefix = "${item["modul"]}";
-                        // int startIndex = "post-file/".length;
-                        // String urlModul = prefix.substring(startIndex);
+              child: RefreshIndicator(
+                onRefresh: _onRefresh,
+                child: Obx(() => ListView.builder(
+                      itemCount: modulController.moduls.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var item = modulController.moduls[index];
+                        return InkWell(
+                          onTap: () {
+                            print('Card Clicked: ${item["modul"]}');
+                            String urlnya = "${item["modul"]}";
+                            // int startIndex = "post-file/".length;
+                            // String urlModul = prefix.substring(startIndex);
+                            String extension = path.extension(urlnya);
 
-                        var modulUrl =
-                            'https://tani.ferdirns.com/storage/${item["modul"]}';
-                        Get.to(() => ModulDetailPage(pdfUrl: modulUrl));
-                        // _launchURL(modulUrl);
-                      },
-                      child: Card(
-                        elevation: 3,
-                        child: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 120,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.grey[300],
-                                ),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.book,
-                                    size: 40,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 15),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      item["title"],
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                            var modulUrl =
+                                'https://tani.ferdirns.com/storage/${item["modul"]}';
+                            if (extension == ".pdf") {
+                              Get.to(() => ModulDetailPage(pdfUrl: modulUrl));
+                              // _launchURL(modulUrl);
+                            } else {
+                              print("${modulUrl}");
+                              _launchURL(modulUrl);
+                            }
+                          },
+                          child: Card(
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.all(15),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 80,
+                                    height: 120,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.grey[300],
                                     ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      item["created_at"],
-                                      style: TextStyle(
-                                        fontSize: 16,
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.book,
+                                        size: 40,
                                         color: Colors.grey[600],
                                       ),
                                     ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      'Klik untuk membuka modul...',
-                                      style: TextStyle(fontSize: 14),
+                                  ),
+                                  SizedBox(width: 15),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          item["title"],
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(height: 5),
+                                        Text(
+                                          item["created_at"],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Text(
+                                          'Klik untuk membuka modul...',
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    )),
               ),
             ),
           ],
