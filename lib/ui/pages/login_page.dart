@@ -136,18 +136,15 @@ class LoginPage extends GetView<LoginController> {
                   children: [
                     TextSpan(
                       text: "Don't have an account? ",
-                      style: TextStyle(
-                        color: Colors.black, // Change color as needed
-                      ),
+                      style: font_regular,
                     ),
                     TextSpan(
                       text: "Register",
-                      style: TextStyle(
+                      style: font_regular.copyWith(
                         color: Colors.blue,
                         decoration: TextDecoration.underline,
                       ),
                     ),
-                    // You can add more TextSpan for additional text if needed
                   ],
                 ),
               ),

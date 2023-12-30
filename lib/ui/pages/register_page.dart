@@ -13,7 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:lahantani/ui/widgets/validator.dart';
 
 class RegisterPage extends GetView<RegisterController> {
-  // final RegisterController controller = Get.put(RegisterController());
+  final RegisterController controller = Get.put(RegisterController());
   // TextEditingController properties
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -79,6 +79,8 @@ class RegisterPage extends GetView<RegisterController> {
   }
 
   Widget _buildForm() {
+    final RegisterController controller = Get.put(RegisterController());
+
     return Form(
       key: controller.formKey,
       child: Column(
@@ -86,13 +88,16 @@ class RegisterPage extends GetView<RegisterController> {
         children: [
           Text(
             "Registrasi Akun",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.poppins(
               color: green2Color,
               fontSize: 32,
               fontWeight: FontWeight.w500,
             ),
           ),
-          Text("Isi berdasarkan data yang valid"),
+          Text(
+            "Isi berdasarkan data yang valid",
+            style: font_regular,
+          ),
           const SizedBox(height: 40),
           InputField(
             title: "Nama",
@@ -167,17 +172,15 @@ class RegisterPage extends GetView<RegisterController> {
                 Get.off(() => LoginPage());
               },
               child: RichText(
-                text: const TextSpan(
+                text: TextSpan(
                   children: [
                     TextSpan(
                       text: "Sudah punya akun? ",
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
+                      style: font_regular,
                     ),
                     TextSpan(
                       text: "Login",
-                      style: TextStyle(
+                      style: font_regular.copyWith(
                         color: Colors.blue,
                         decoration: TextDecoration.underline,
                       ),
