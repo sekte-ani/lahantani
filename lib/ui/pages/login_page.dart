@@ -50,7 +50,7 @@ class LoginPage extends GetView<LoginController> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(Icons.assignment_ind_outlined, size: 100, color: Colors.white),
+          Icon(Icons.grass, size: 100, color: Colors.white),
           Text(
             "LahanTani",
             style: GoogleFonts.montserrat(
