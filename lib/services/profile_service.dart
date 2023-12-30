@@ -22,4 +22,31 @@ class ProfileService {
     print(obj);
     return obj["data"];
   }
+
+  update({
+    required int id,
+    required String phone,
+    required String born,
+    required String address,
+    required String password,
+  }) async {
+    String? token = box.read("token");
+    var response = await Dio().patch(
+      "https://tani.ferdirns.com/api/profile/$id",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      ),
+      data: {
+        "phone": phone,
+        "born": born,
+        "address": address,
+        "password": password,
+      },
+    );
+    Map obj = response.data;
+    return obj["data"]["id"];
+  }
 }
