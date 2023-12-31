@@ -28,7 +28,7 @@ class ForumController extends GetxController {
       Get.snackbar(
         'Error',
         'Form validation failed',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         colorText: whiteColor,
         backgroundColor: redColor,
       );
@@ -37,11 +37,11 @@ class ForumController extends GetxController {
       Get.snackbar(
         'Success',
         'Forum berhasil terkirim',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         colorText: whiteColor,
         backgroundColor: greenColor,
       );
-      
+
       selected.value = '';
       messageController.clear();
       return;
