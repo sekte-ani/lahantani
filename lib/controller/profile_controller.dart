@@ -77,7 +77,7 @@ class ProfileController extends GetxController {
         'Profile Update Successful',
         snackPosition: SnackPosition.TOP,
         colorText: whiteColor,
-        backgroundColor: greenColor,
+        backgroundColor: green2Color,
       );
       await getProfiles();
     } catch (e) {

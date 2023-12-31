@@ -39,7 +39,7 @@ class ForumController extends GetxController {
         'Forum berhasil terkirim',
         snackPosition: SnackPosition.TOP,
         colorText: whiteColor,
-        backgroundColor: greenColor,
+        backgroundColor: green2Color,
       );
 
       selected.value = '';

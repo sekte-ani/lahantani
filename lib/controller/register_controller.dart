@@ -46,7 +46,7 @@ class RegisterController extends GetxController {
         'Akun berhasil dibuat!',
         snackPosition: SnackPosition.TOP,
         colorText: whiteColor,
-        backgroundColor: greenColor,
+        backgroundColor: green2Color,
       );
 
       Get.off(() => LoginPage());
