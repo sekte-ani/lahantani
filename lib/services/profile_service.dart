@@ -40,10 +40,10 @@ class ProfileService {
         },
       ),
       data: {
-        "phone": phone,
-        "born": born,
-        "address": address,
         "password": password,
+        "phone": phone,
+        "address": address,
+        "born": born,
       },
     );
     Map obj = response.data;

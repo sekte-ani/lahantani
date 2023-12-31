@@ -13,6 +13,7 @@ class InputField extends StatelessWidget {
   final TextInputType? keyboard;
   final List<TextInputFormatter>? inputFormatters;
   final void Function(String?)? onChange;
+  final String? value;
 
   const InputField({
     Key? key,
@@ -24,6 +25,7 @@ class InputField extends StatelessWidget {
     this.inputFormatters,
     this.onChange,
     this.keyboard,
+    this.value,
   });
 
   @override
@@ -41,6 +43,7 @@ class InputField extends StatelessWidget {
         ),
         TextFormField(
           obscureText: obscureText,
+          initialValue: value,
           controller: controller,
           validator: validator,
           inputFormatters: inputFormatters,
@@ -166,6 +169,7 @@ class InputFieldPassword extends StatelessWidget {
   final void Function(String?)? onChange;
   final RxBool isChecked = false.obs;
   final RxBool isSwitch = false.obs;
+  final String? value;
 
   InputFieldPassword({
     Key? key,
@@ -175,6 +179,7 @@ class InputFieldPassword extends StatelessWidget {
     this.validator,
     this.inputFormatters,
     this.onChange,
+    this.value,
   });
 
   @override
@@ -194,6 +199,7 @@ class InputFieldPassword extends StatelessWidget {
           () => TextFormField(
             obscureText: _obscureText.value,
             controller: controller,
+            initialValue: value,
             keyboardType: TextInputType.emailAddress,
             inputFormatters: inputFormatters,
             onChanged: onChange,
@@ -250,17 +256,18 @@ class InputFieldBox extends StatelessWidget {
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
   final void Function(String?)? onChange;
+  final String? value;
 
-  const InputFieldBox({
-    Key? key,
-    required this.title,
-    required this.hintText,
-    this.obscureText = false,
-    this.controller,
-    this.validator,
-    this.inputFormatters,
-    this.onChange,
-  });
+  const InputFieldBox(
+      {Key? key,
+      required this.title,
+      required this.hintText,
+      this.obscureText = false,
+      this.controller,
+      this.validator,
+      this.inputFormatters,
+      this.onChange,
+      this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -279,6 +286,7 @@ class InputFieldBox extends StatelessWidget {
           minLines: 4,
           maxLines: 5,
           keyboardType: TextInputType.multiline,
+          initialValue: value,
           obscureText: obscureText,
           controller: controller,
           validator: validator,

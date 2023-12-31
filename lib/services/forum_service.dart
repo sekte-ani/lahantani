@@ -8,21 +8,26 @@ class ForumService {
     required String subject,
     required String message,
   }) async {
-    String? token = box.read("token");
+    try {
+      String? token = box.read("token");
 
-    var response = await Dio().post(
-      "https://tani.ferdirns.com/api/chat",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $token",
+      var response = await Dio().post(
+        "https://tani.ferdirns.com/api/chat",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          },
+        ),
+        data: {
+          "subject": subject,
+          "message": message,
         },
-      ),
-      data: {
-        "subject": subject,
-        "message": message,
-      },
-    );
-    Map obj = response.data;
+      );
+      Map obj = response.data;
+      return true;
+    } on Exception catch (_) {
+      return false;
+    }
   }
 }

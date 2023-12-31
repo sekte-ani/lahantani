@@ -21,15 +21,7 @@ class LoginPage extends GetView<LoginController> {
 
     return Container(
       decoration: BoxDecoration(
-        color: green2Color, // Ensure green2Color is defined
-        // image: DecorationImage(
-        //   image: const AssetImage("assets/bg3.jpg"),
-        //   fit: BoxFit.cover,
-        //   colorFilter: ColorFilter.mode(
-        //     green2Color.withOpacity(0.2),
-        //     BlendMode.dstATop,
-        //   ),
-        // ),
+        color: greenColor,
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

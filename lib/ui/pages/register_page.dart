@@ -27,7 +27,7 @@ class RegisterPage extends GetView<RegisterController> {
     var mediaSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: green2Color,
+      backgroundColor: greenColor,
       body: SafeArea(
         bottom: false,
         child: Stack(
