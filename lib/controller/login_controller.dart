@@ -40,7 +40,7 @@ class LoginController extends GetxController {
         'Login Successful',
         snackPosition: SnackPosition.TOP,
         colorText: whiteColor,
-        backgroundColor: greenColor,
+        backgroundColor: green2Color,
       );
       
       Get.offAll(() => DashboardPage());

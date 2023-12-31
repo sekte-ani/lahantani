@@ -11,8 +11,6 @@ class ForumPage extends GetView<ForumController> {
   final TextEditingController questionController = TextEditingController();
   final RxBool submitted = false.obs;
 
-  var selected = ''.obs;
-
   void submitQuestion() {
     // Add logic to send the question or message
     submitted.value = true;
@@ -74,14 +72,14 @@ class ForumPage extends GetView<ForumController> {
                           child: DropdownButtonFormField<String>(
                             validator: Validator.required,
                             hint: Text("Pilih Perihal.."),
-                            value: selected.value.isNotEmpty
-                                ? selected.value
+                            value: controller.selected.value.isNotEmpty
+                                ? controller.selected.value
                                 : null,
                             isExpanded: true,
                             onChanged: (value) {
                               // No need to setState as it's a stateless widget
                               controller.subject = value!;
-                              selected.value = value!;
+                              controller.selected.value = value;
                               print(value);
                             },
                             items: <String>[
@@ -104,6 +102,7 @@ class ForumPage extends GetView<ForumController> {
                   SizedBox(height: 20),
                   TextFormField(
                     validator: Validator.required,
+                    controller: controller.messageController,
                     onChanged: (value) {
                       controller.message = value;
                     },
