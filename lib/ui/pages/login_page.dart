@@ -1,10 +1,150 @@
+import 'package:lahantani/controller/login_controller.dart';
+import 'package:lahantani/ui/pages/register_page.dart';
+import 'package:lahantani/ui/widgets/buttons.dart';
+import 'package:lahantani/ui/widgets/forms.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lahantani/theme.dart';
+import 'package:flutter/services.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends GetView<LoginController> {
+  final LoginController controller = Get.put(LoginController());
+
+  // TextEditingController properties
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    var mediaSize = MediaQuery.of(context).size;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: greenColor,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            Positioned(top: 80, child: _buildTop(mediaSize)),
+            Positioned(bottom: 0, child: _buildBottom(mediaSize)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTop(Size mediaSize) {
+    return Container(
+      width: mediaSize.width,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(Icons.grass, size: 100, color: Colors.white),
+          Text(
+            "LahanTani",
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 40,
+              letterSpacing: 2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBottom(Size mediaSize) {
+    return Container(
+      width: mediaSize.width,
+      child: Card(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: _buildForm(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildForm() {
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Hello!",
+            style: GoogleFonts.montserrat(
+              color: green2Color, // Ensure green2Color is defined
+              fontSize: 32,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text("Please login with your information"),
+          const SizedBox(height: 40),
+          InputField(
+            title: "Email",
+            hintText: "Masukkan email anda..",
+            onChange: (value) {
+              controller.email = value;
+            },
+            validator: (email) => controller.validateEmail(email),
+          ),
+          const SizedBox(height: 30),
+          InputFieldPassword(
+            title: "Password",
+            hintText: "Masukkan password anda..",
+            onChange: (value) {
+              controller.password = value;
+            },
+            validator: (password) => controller.validatePassword(password),
+          ),
+          const SizedBox(height: 40),
+          PrimaryButton(
+            title: "Login",
+            onPressed: () {
+              debugPrint("Email : ${controller.email}");
+              debugPrint("Password : ${controller.password}");
+              controller.doLogin();
+            },
+          ),
+          const SizedBox(height: 20),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Get.off(() => RegisterPage());
+              },
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Don't have an account? ",
+                      style: font_regular,
+                    ),
+                    TextSpan(
+                      text: "Register",
+                      style: font_regular.copyWith(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 60),
+        ],
+      ),
+    );
   }
 }

@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+Color greenColor = Colors.green;
+// Color green2Color = const Color(0xff459D25);
+Color green2Color = const Color(0xff79AC78);
+Color subtleGreenColor = const Color(0xff82CB67);
+Color darkGreenColor = const Color(0xff031F10);
+Color redColor = const Color(0xffFB4141);
+Color yellowColor = const Color(0xffD2CD56);
+Color yellow2Color = const Color(0xffF4EE67);
+
 Color blackColor = const Color(0xff404040);
 Color black2Color = const Color(0xff4D4D4D);
 Color greyColor = const Color(0xffC7C9D9);
