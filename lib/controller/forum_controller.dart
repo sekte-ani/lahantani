@@ -5,10 +5,13 @@ import 'package:lahantani/theme.dart';
 
 class ForumController extends GetxController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController messageController = TextEditingController();
   // final getStorage = GetStorage();
 
   String? subject;
   String? message;
+
+  RxString selected = ''.obs;
 
   doKirim() async {
     Get.focusScope!.unfocus();
@@ -38,6 +41,9 @@ class ForumController extends GetxController {
         colorText: whiteColor,
         backgroundColor: greenColor,
       );
+      
+      selected.value = '';
+      messageController.clear();
       return;
     }
   }
