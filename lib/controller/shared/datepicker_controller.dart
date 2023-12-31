@@ -25,7 +25,7 @@ class DatePickerController extends GetxController {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
       initialDate: selectedDate.value,
-      firstDate: DateTime(2000),
+      firstDate: DateTime(1600),
       lastDate: DateTime(2100),
     );
     // TimeOfDay? pickedTime = await showTimePicker(
