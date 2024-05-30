@@ -12,7 +12,7 @@ class ForumService {
       String? token = box.read("token");
 
       var response = await Dio().post(
-        "https://tani.ferdirns.com/api/chat",
+        "https://tani.anitech.id/api/chat",
         options: Options(
           headers: {
             "Content-Type": "application/json",

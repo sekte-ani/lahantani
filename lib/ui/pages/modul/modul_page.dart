@@ -26,6 +26,7 @@ class ModulPage extends GetView<DashboardController> {
 
   Future<void> _onRefresh() async {
     await modulController.getModuls();
+    await profileController.getProfiles();
   }
 
   @override
@@ -65,13 +66,18 @@ class ModulPage extends GetView<DashboardController> {
                       color: whiteColor,
                     ),
                   ),
-                  Obx(() => Text(
-                        '${dataProfile["name"]}',
-                        style: font_medium.copyWith(
-                          fontSize: 18,
-                          color: whiteColor,
-                        ),
-                      )),
+                  Obx(() {
+                    var dataProfile = profileController.profile;
+                    return Text(
+                      dataProfile.isNotEmpty
+                          ? '${dataProfile["name"]}'
+                          : 'Loading...',
+                      style: font_medium.copyWith(
+                        fontSize: 18,
+                        color: whiteColor,
+                      ),
+                    );
+                  }),
                 ],
               ),
               GestureDetector(
@@ -127,14 +133,13 @@ class ModulPage extends GetView<DashboardController> {
                           var item = modulController.moduls[index];
                           return InkWell(
                             onTap: () {
-                              print('Card Clicked: ${item["modul"]}');
                               String urlnya = "${item["modul"]}";
                               // int startIndex = "post-file/".length;
                               // String urlModul = prefix.substring(startIndex);
                               String extension = path.extension(urlnya);
 
                               var modulUrl =
-                                  'https://tani.ferdirns.com/storage/${item["modul"]}';
+                                  'https://tani.anitech.id/storage/${item["modul"]}';
                               if (extension == ".pdf") {
                                 Get.to(() => ModulDetailPage(pdfUrl: modulUrl));
                                 // _launchURL(modulUrl);
@@ -156,11 +161,19 @@ class ModulPage extends GetView<DashboardController> {
                                         borderRadius: BorderRadius.circular(8),
                                         color: Colors.grey[300],
                                       ),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.book,
-                                          size: 50,
-                                          color: Colors.grey[600],
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.network(
+                                          'https://tani.anitech.id/storage/${item["cover"]}',
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return Icon(
+                                              Icons.book,
+                                              size: 50,
+                                              color: Colors.grey[600],
+                                            );
+                                          },
                                         ),
                                       ),
                                     ),

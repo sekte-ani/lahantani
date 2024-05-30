@@ -22,8 +22,6 @@ class ProfileController extends GetxController {
     getProfiles();
   }
 
-  void initState() {}
-
   String? phone;
   String? born;
   String? address;
@@ -42,7 +40,6 @@ class ProfileController extends GetxController {
       update();
     } catch (e) {
       print('Error fetching profiles: $e');
-      // Handle error as needed
     }
   }
 

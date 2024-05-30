@@ -10,7 +10,7 @@ class ModulService {
   Future<List> get() async {
     String? token = box.read("token");
     var response = await Dio().get(
-      "https://tani.ferdirns.com/api/modul",
+      "https://tani.anitech.id/api/modul",
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -21,6 +21,7 @@ class ModulService {
     String jsonString = jsonEncode(response.data);
     Map obj = jsonDecode(jsonString);
     List data = obj["data"];
+    print("lah ini dari modul serv = ${data}");
     return data;
   }
 }

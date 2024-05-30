@@ -10,7 +10,7 @@ class AuthService {
   }) async {
     try {
       var response = await Dio().post(
-        "https://tani.ferdirns.com/api/login",
+        "https://tani.anitech.id/api/login",
         options: Options(
           headers: {
             "Content-Type": "application/json",
@@ -41,7 +41,7 @@ class AuthService {
   }) async {
     try {
       var response = await Dio().post(
-        "https://tani.ferdirns.com/api/register",
+        "https://tani.anitech.id/api/register",
         options: Options(
           headers: {
             "Content-Type": "application/json",
