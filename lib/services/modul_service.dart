@@ -21,7 +21,6 @@ class ModulService {
     String jsonString = jsonEncode(response.data);
     Map obj = jsonDecode(jsonString);
     List data = obj["data"];
-    print("lah ini dari modul serv = ${data}");
     return data;
   }
 }
