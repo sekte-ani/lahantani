@@ -44,7 +44,7 @@ class LoginPage extends GetView<LoginController> {
         children: [
           Icon(Icons.grass, size: 100, color: Colors.white),
           Text(
-            "LahanTani",
+            "LahanGuna",
             style: GoogleFonts.montserrat(
               color: Colors.white,
               fontWeight: FontWeight.bold,
