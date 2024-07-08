@@ -10,7 +10,7 @@ class ProfileService {
   Future<Map> get() async {
     String? token = box.read("token");
     var response = await Dio().get(
-      "https://tani.ferdirns.com/api/profile",
+      "https://tani.anitech.id/api/user",
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -19,8 +19,7 @@ class ProfileService {
       ),
     );
     Map obj = response.data;
-    print(obj);
-    return obj["data"];
+    return obj;
   }
 
   update({
@@ -32,7 +31,7 @@ class ProfileService {
   }) async {
     String? token = box.read("token");
     var response = await Dio().patch(
-      "https://tani.ferdirns.com/api/profile/$id",
+      "https://tani.anitech.id/api/profile/$id",
       options: Options(
         headers: {
           "Content-Type": "application/json",

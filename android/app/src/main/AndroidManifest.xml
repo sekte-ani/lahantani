@@ -4,7 +4,7 @@
 
     <application
     android:usesCleartextTraffic="true"
-        android:label="LahanTani"
+        android:label="LahanGuna"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
